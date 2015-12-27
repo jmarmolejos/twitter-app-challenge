@@ -20,12 +20,10 @@ module TweetParserHelper
 
   def parse_links tweet_text
     pattern = /http\S+\/\/[\S]+/
-
     matches = tweet_text.scan(pattern)
     new_text = tweet_text.dup
 
     matches.each { |match|
-      p match
       new_text.sub!(match, "<a href=\"#{match}\">#{match}</a>")
     }
 

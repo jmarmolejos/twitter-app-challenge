@@ -1,2 +1,17 @@
-<h1>Twitter#index</h1>
-<p>Find me in app/views/twitter/index.html.erb</p>
+<div class="container">
+	<div class="jumbotron">
+		<h2>Take a peek at a user's timeline</h2>
+    <div id="custom-search-input">
+      <form action="/timeline" method="get">
+        <div class="input-group col-md-12">
+          <input type="text" class="search-query form-control" name="user" placeholder="Search by twitter handle" />
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">
+                <span class=" glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+	</div>
+</div>
