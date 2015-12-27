@@ -7,5 +7,6 @@ class TwitterController < ApplicationController
   def timeline
     user = params['user']
     @tweets = get_timeline user
+    @user_handle = "@#{user}"
   end
 end
