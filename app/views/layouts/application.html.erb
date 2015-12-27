@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<% if logged_in? %>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="pull-right">
+        <p>
+          <%= @current_user.email %> (<%= link_to "logout", logout_path, method: :delete %>)
+        </p>
+      </div>
+    </div>
+  </nav>
+<% end %>
+
 <%= yield %>
 
 </body>
