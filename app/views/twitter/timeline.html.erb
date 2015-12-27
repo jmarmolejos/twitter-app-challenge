@@ -1,21 +1,37 @@
 <%= render "search" %>
 
-<div class="container timeline">
-  <h2>Showing tweets from <%= raw parse_mentions(@user_handle) %></h2>
-  <% @tweets.each do |tweet| %>
-    <div class="row">
-      <div class="col-md-12">
-        <p>
-          <%= raw("#{parse_tweet tweet.text}") %>
-        </p>
-        <p>
-          <a href="<%= tweet.url %>">
-            <%= tweet.created_at.strftime("Posted on %m/%d/%Y")  %>
-            <%= tweet.created_at.strftime("at %I:%M%p") %>
-          </a>
-        </p>
-      </div>
+<% flash.each do |message_type, message| %>
+  <div class="container">
+    <div class="alert alert-<%= message_type %>">
+      <%= message %>
     </div>
-    <hr>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<% if flash.count == 0 %>
+  <div class="container timeline">
+    <h2>Showing tweets from <%= raw parse_mentions(@user_handle) %></h2>
+    <% @tweets.each do |tweet| %>
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+            <%= raw("#{parse_tweet tweet.text}") %>
+          </p>
+          <p>
+            <a href="<%= tweet.url %>">
+              <%= tweet.created_at.strftime("Posted on %m/%d/%Y")  %>
+              <%= tweet.created_at.strftime("at %I:%M%p") %>
+            </a>
+          </p>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+
+    <% if @tweets.count == 0 %>
+      <p class="text-muted">
+        This user hasn't tweeted yet.
+      </p>
+    <% end %>
+  </div>
+<% end %>

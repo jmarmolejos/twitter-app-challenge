@@ -2,16 +2,16 @@
 	<div class="jumbotron">
 		<h2>Take a peek at a user's timeline</h2>
     <div id="custom-search-input">
-      <form action="/timeline" method="get">
-        <div class="input-group col-md-12">
-          <input type="text" class="search-query form-control" name="user" placeholder="Search by twitter handle" />
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">
-                <span class=" glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-      </form>
+			<%= form_tag("/timeline", method:"get") do %>
+			<div class="input-group col-md-12">
+					<%= text_field_tag(:user, params["user"], class:"search-query form-control", placeholder:"Search by twitter handle") %>
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit">
+								<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+			</div>
+			<% end %>
     </div>
 	</div>
 </div>
