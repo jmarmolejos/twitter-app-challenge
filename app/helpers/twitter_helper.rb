@@ -9,6 +9,8 @@ module TwitterHelper
   end
 
   def get_timeline(user)
-    twitter.user_timeline(user, {count: 25})
+    Rails.cache.fetch("requests/#{user}", expires_in: 15.minutes) do
+      twitter.user_timeline(user, {count: 25})
+    end
   end
 end
