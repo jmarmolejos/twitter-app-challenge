@@ -1,28 +1,30 @@
-== README
+= README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The app has two controllers, one to handle the authentication bits and the other for the user to be able to query a twitter handle's timeline. The SessionsHelper aids the login process and is present as a module to allow easy reuse between controllers that might need it.
 
-Things you may want to cover:
+Only a User model was needed for authentication as the twitter gem provides a handy Tweet entity with all the methods we need to read the tweets.
 
-* Ruby version
+All the twitter related logic was divided between two helpers to keep modules with a single concern: TwitterHelper that consumes the api (through the twitter gem) and TweetParser that aids us to extract links and mentions from a tweet.
 
-* System dependencies
+== Local setup
 
-* Configuration
+* Clone the repo.
+* Run <tt>bundle install</tt>.
+* Run <tt>rake db:migrate</tt>.
+* Add your twitter app credentials as these config keys to you .env file (alternatively you can replace them in /app/helpers/twitter_helper.rb, but I don't recommend it)
+  * CONSUMER_KEY
+  * CONSUMER_SECRET
+  * ACCESS_TOKEN
+  * ACCESS_TOKEN_SECRET
+* Run <tt>heroku local</tt>.
+* Visit the site in your browser and start searching for tweets!
 
-* Database creation
+== Deploy to heroku
 
-* Database initialization
+* Run <tt>git push heroku master</tt>.
+* Run <tt>heroku run db:migrate</tt> (first time deployment only).
+* Let heroku do its thing, and bask on your productivity.
 
-* How to run the test suite
+== Test
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Just run <tt>rake test</tt> to run the TweetParserHelper tests.
