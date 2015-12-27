@@ -1,0 +1,3 @@
+<% @tweets.each do |tweet| %>
+  <%= raw("<p>#{parse_tweet tweet.text}</p>") %>
+<% end %>
